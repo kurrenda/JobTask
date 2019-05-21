@@ -1,0 +1,38 @@
+import pandas as pd
+import numpy as np
+import xlrd
+import openpyxl
+
+plikexel = pd.ExcelFile('lolxd.xlsx')
+df = pd.read_excel(plikexel)
+
+xd = pd.DataFrame(df,columns=['Rok','Imię','Liczba','Płeć'])
+print(xd)
+print(df[(df['Liczba']>1000)]) ## zadanie 2
+print(df[(df['Imię'] == 'RAFAŁ')]) # zadanie 2
+print(df.groupby(['Rok']<2005).agg({'Liczba':['sum']})) #zad 2 podpunkt 3
+print(df[(df['Rok']<2005)]).groupby(['Rok'].sum())
+
+x = df[((df.Rok >= 2000) & (df.Rok <= 2005))]
+print(x.agg({'Liczba':['sum']}))
+#E
+chlopcy = df[((df.Płeć == "M"))]
+dziewczynki = df[((df.Płeć == "K"))]
+print(chlopcy.agg({'Liczba':['sum']}))
+print(dziewczynki.agg({'Liczba':['sum']}))
+#F
+for i in range(17):
+    x = i + 2000
+    x = int(x)
+    chlopcy = df[((df.Rok == x) & (df.Płeć == "M"))]
+    dziewczynki = df[((df.Rok == x) & (df.Płeć == "K"))]
+    print(x)
+    print("-------------------------------")
+    print(chlopcy.agg({'Liczba':['max']}))
+    print(dziewczynki.agg({'Liczba':['max']}))
+    print("-------------------------------")
+#G
+chlopcy = df[((df.Płeć == "M"))]
+print(chlopcy.agg({'Liczba':['max']}))
+dziewczynki = df[((df.Płeć == "K"))]
+print(dziewczynki.agg({'Liczba':['max']}))
