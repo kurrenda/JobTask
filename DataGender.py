@@ -2,7 +2,7 @@ import csv
 
 class CountGender:
 
-    def average(self):
+    def average2(self):
         with open(self.filename, 'r', encoding='windows-1250') as csvfile:
             document = csv.DictReader(csvfile, delimiter=';')
             count = 0
@@ -17,12 +17,13 @@ class CountGender:
                                     peopleInt = int(''.join(map(str, row['Liczba osób'])))
                                     counter += 1
                                     count += peopleInt
-                result = count / counter
-                print(self.year, "-", round(result), end='\n')
+                if counter != 0:
+                    result = count / counter
+                    print(self.year, "-", round(result))
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
 
-    def percent(self):
+    def percent2(self):
         with open(self.filename, 'r', encoding='windows-1250') as csvfile:
             document = csv.DictReader(csvfile, delimiter=';')
             countAll = 0
@@ -45,7 +46,6 @@ class CountGender:
                     print(self.year, "-", round(result))
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
-
 
 
 
