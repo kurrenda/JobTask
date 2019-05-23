@@ -16,9 +16,9 @@ class Count:
                 for row in document:
                     if row['Terytorium'] == province:
                         if row['Przystąpiło/zdało '] == 'przystąpiło':
-                            yearInt = int(''.join(map(str, row['Rok'])))
+                            yearInt = float(''.join(map(str, row['Rok'])))
                             if yearInt <= year:
-                                peopleInt = int(''.join(map(str, row['Liczba osób'])))
+                                peopleInt = float(''.join(map(str, row['Liczba osób'])))
                                 counter += 1
                                 count += peopleInt
                 if counter != 0:
@@ -36,18 +36,18 @@ class Count:
             if year <= 2018 and year >= 2010:
                 for row in document:
                     if province == row['Terytorium'] and province != 'Polska':
-                        yearInt = int(''.join(map(str, row['Rok'])))
+                        yearInt = float(''.join(map(str, row['Rok'])))
                         if year == yearInt:
                             if row['Przystąpiło/zdało '] == 'przystąpiło':
-                                peopleIntAll = int(''.join(map(str, row['Liczba osób'])))
+                                peopleIntAll = float(''.join(map(str, row['Liczba osób'])))
                                 countAll += peopleIntAll
                             if row['Przystąpiło/zdało '] == 'zdało':
-                                peopleIntPassed = int(''.join(map(str, row['Liczba osób'])))
+                                peopleIntPassed = float(''.join(map(str, row['Liczba osób'])))
                                 countPassed += peopleIntPassed
 
                 if(countAll != 0):
-                    result = int((countPassed/countAll) * 100.0)
-                    return result
+                    result = float((countPassed/countAll) * 100.0)
+                    return round(result)
             return 0
 
     def bestPass(self, year):
@@ -56,20 +56,57 @@ class Count:
             result = 0
             if year <= 2018 and year >= 2010:
                 for row in document:
-                    if row['Płeć '] == 'kobiety': #usunięcie powtarzających się elementow ze względu na płeć
-                        province = row['Terytorium']
-                        temp = self.percent(year, province)
-                        print(temp)
-                        if temp > result:
-                            provinceResult = province
-                            result = temp
+                    province = row['Terytorium']
+                    temp = self.percent(year, province)
+                    if temp > result:
+                        provinceResult = province
+                        result = temp
                 print(provinceResult,result)
 
+    def compareProvince(self, province1, province2):
+        with open(self.filename, 'r', encoding='windows-1250') as csvfile:
+            document = csv.DictReader(csvfile, delimiter=';')
+            data = list(document)
+            for y in range(2010,2019):
+                accededAll = 0
+                passed = 0
+                accededAll2 = 0
+                passed2 = 0
+                for x in data:
+                    if x["Rok"] == str(y):
+                        if x["Terytorium"] == str(province1):
+                            if x["Przystąpiło/zdało "] == "przystąpiło":
+                                accededIntAll = int(x["Liczba osób"])
+                                accededAll += accededIntAll
+                            if x["Przystąpiło/zdało "] == "zdało":
+                                passedInt = int(x["Liczba osób"])
+                                passed += passedInt
+                        if x["Terytorium"] == str(province2):
+                            if x["Przystąpiło/zdało "] == "przystąpiło":
+                                accededIntAll2 = int(x["Liczba osób"])
+                                accededAll2 += accededIntAll2
+                            if x["Przystąpiło/zdało "] == "zdało":
+                                passedInt2 = int(x["Liczba osób"])
+                                passed2 += passedInt2
+                if accededAll != 0 and accededAll2 != 0:
+                    result = round((passed/accededAll) * 100)
+                    result2 = round((passed2 / accededAll2) * 100)
+                    if result > result2:
+                        print(y,province1)
+                    elif result < result2:
+                        print(y,province2)
+                    else:
+                        print(y,"Oba mają taki sam wynik",province1, result, province2, result2 )
 
+d = Count('dane.csv')
 
+d.compareProvince('Mazowieckie','Pomorskie')
 
+print(d.percent(2010, 'Mazowieckie'))
+print(d.percent(2010, 'Pomorskie'))
 
-
+print(d.percent(2014, 'Mazowieckie'))
+print(d.percent(2014, 'Pomorskie'))
 
 
 
