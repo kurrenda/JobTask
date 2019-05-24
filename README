@@ -6,33 +6,52 @@ Instrukcja:
 python Main.py -mode [zad1/zad2/zad3/zad4/zad5]    <---- wybór zadania
 
 
-ZAD1
-
-python Main.py -mode zad1 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery]
-
-np: >python Main.py -mode zad1 -year 2010 -prov Pomorskie
+ZAD 1) obliczenie średniej liczby osób, które przystąpiły do egzaminu dla danego województwa na przestrzeni lat, do podanego roku włącznie
 
 
-ZAD2
+python Main.py NAZWAPLIKU -mode zad1 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery]
 
-python Main.py -mode zad3 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery}
-
-np: >python Main.py -mode zad2 -year 2010 -prov Pomorskie
-
-ZAD3
-
-python Main.py -mode zad3 -year [rok od 2010 do 2018]
-
-np: >python Main.py -mode zad3 -year 2015
+np: >python Main.py dane.csv -mode zad1 -year 2010 -prov Pomorskie
 
 
-ZAD4
 
-python Main.py -mode zad4
 
-ZAD5
+ZAD 2) obliczenie procentowej zdawalności dla danego województwa na przestrzeni lat
 
-python Main.py -mode zad5 -prov [województwo z wielkiej litery] -prov2 [wojewodztwo z wielkiej litery]
+
+python Main.py NAZWAPLIKU dane.csv -mode zad3 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery}
+
+np: >python Main.py dane.csv -mode zad2 -year 2010 -prov Pomorskie
+
+
+
+
+ZAD 3) podanie województwa o najlepszej zdawalności w konkretnym roku
+
+
+python Main.py NAZWAPLIKU -mode zad3 -year [rok od 2010 do 2018]
+
+np: >python Main.py dane.csv -mode zad3 -year 2015
+
+
+
+
+ZAD 4) wykrycie województw, które zanotowały regresję (mniejszy współczynnik zdawalności w kolejnym roku), jeżeli takowe znajdują się w zbiorze
+
+
+python Main.py dane.csv -mode zad4
+
+
+
+
+ZAD 5) porównanie dwóch województw - dla podanych dwóch województw wypisanie, które z województw miało lepszą zdawalność w każdym dostępnym roku
+
+
+python Main.py NAZWAPLIKU -mode zad5 -prov [województwo z wielkiej litery] -prov2 [wojewodztwo z wielkiej litery]
+
+np: python Main.py dane.csv -mode zad5 -prov Pomorskie -prov2 Mazowieckie
+
+
 
 Filtry:
 
