@@ -1,4 +1,4 @@
-import Data,DataMan,DataWoman
+import Data,DataMan,DataWoman, ApiReader, UploadFile, DownloadFile
 from argparse import ArgumentParser
 
 
@@ -19,6 +19,14 @@ def main():
 
     name = args.filename
 
+    if args.filename == 'api':
+        ApiReader.api()
+
+    if args.filename == 'uploadfile':
+        UploadFile.upload()
+
+    if args.filename == 'downloadfile':
+        DownloadFile.download()
 
     if args.mode == 'zad1':
         year = int(args.year)

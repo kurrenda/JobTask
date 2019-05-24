@@ -70,7 +70,8 @@ class Count:
                 if (countAll != 0):
                     result = float((countPassed / countAll) * 100.0)
                     print(year,"-",round(result))
-            return 0
+            else:
+                print("Syntax Error")
 
 
 
