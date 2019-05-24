@@ -1,7 +1,6 @@
 import csv
 
-
-class Count:
+class CountMan:
 
     def __init__(self,filename):
         self.filename = filename
@@ -15,18 +14,18 @@ class Count:
             if year <= 2018 and year >= 2010:
                 for row in document:
                     if row['Terytorium'] == province:
-                        if row['Przystąpiło/zdało '] == 'przystąpiło':
-                            yearInt = float(''.join(map(str, row['Rok'])))
-                            if yearInt <= year:
-                                peopleInt = float(''.join(map(str, row['Liczba osób'])))
-                                counter += 1
-                                count += peopleInt
+                        if row['Płeć '] == 'mężczyźni':
+                            if row['Przystąpiło/zdało '] == 'przystąpiło':
+                                yearInt = float(''.join(map(str, row['Rok'])))
+                                if yearInt <= year:
+                                    peopleInt = float(''.join(map(str, row['Liczba osób'])))
+                                    counter += 1
+                                    count += peopleInt
                 if counter != 0:
                     result = count / counter
                     print(year, "-", round(result))
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
-
 
     def percent(self,year,province):
         with open(self.filename, 'r', encoding='windows-1250') as csvfile:
@@ -36,14 +35,15 @@ class Count:
             if year <= 2018 and year >= 2010:
                 for row in document:
                     if province == row['Terytorium'] and province != 'Polska':
-                        yearInt = float(''.join(map(str, row['Rok'])))
-                        if year == yearInt:
-                            if row['Przystąpiło/zdało '] == 'przystąpiło':
-                                peopleIntAll = float(''.join(map(str, row['Liczba osób'])))
-                                countAll += peopleIntAll
-                            if row['Przystąpiło/zdało '] == 'zdało':
-                                peopleIntPassed = float(''.join(map(str, row['Liczba osób'])))
-                                countPassed += peopleIntPassed
+                        if row['Płeć '] == 'mężczyźni':
+                            yearInt = float(''.join(map(str, row['Rok'])))
+                            if year == yearInt:
+                                if row['Przystąpiło/zdało '] == 'przystąpiło':
+                                    peopleIntAll = float(''.join(map(str, row['Liczba osób'])))
+                                    countAll += peopleIntAll
+                                if row['Przystąpiło/zdało '] == 'zdało':
+                                    peopleIntPassed = float(''.join(map(str, row['Liczba osób'])))
+                                    countPassed += peopleIntPassed
 
                 if(countAll != 0):
                     result = float((countPassed/countAll) * 100.0)
@@ -58,21 +58,20 @@ class Count:
             if year <= 2018 and year >= 2010:
                 for row in document:
                     if province == row['Terytorium'] and province != 'Polska':
-                        yearInt = float(''.join(map(str, row['Rok'])))
-                        if year == yearInt:
-                            if row['Przystąpiło/zdało '] == 'przystąpiło':
-                                peopleIntAll = float(''.join(map(str, row['Liczba osób'])))
-                                countAll += peopleIntAll
-                            if row['Przystąpiło/zdało '] == 'zdało':
-                                peopleIntPassed = float(''.join(map(str, row['Liczba osób'])))
-                                countPassed += peopleIntPassed
+                        if row['Płeć '] == 'mężczyźni':
+                            yearInt = float(''.join(map(str, row['Rok'])))
+                            if year == yearInt:
+                                if row['Przystąpiło/zdało '] == 'przystąpiło':
+                                    peopleIntAll = float(''.join(map(str, row['Liczba osób'])))
+                                    countAll += peopleIntAll
+                                if row['Przystąpiło/zdało '] == 'zdało':
+                                    peopleIntPassed = float(''.join(map(str, row['Liczba osób'])))
+                                    countPassed += peopleIntPassed
 
                 if (countAll != 0):
                     result = float((countPassed / countAll) * 100.0)
                     print(year,"-",round(result))
             return 0
-
-
 
     def bestPass(self, year):
         with open(self.filename, 'r', encoding='windows-1250') as csvfile:
@@ -80,12 +79,16 @@ class Count:
             result = 0
             if year <= 2018 and year >= 2010:
                 for row in document:
-                    province = row['Terytorium']
-                    temp = self.percent(year, province)
-                    if temp > result:
-                        provinceResult = province
-                        result = temp
+                    if row['Płeć '] == 'mężczyźni':
+                        province = row['Terytorium']
+                        temp = self.percent(year, province)
+                        if temp > result:
+                            provinceResult = province
+                            result = temp
                 print(provinceResult,result)
+
+
+
 
     def bestProvince(self):
         with open(self.filename, 'r', encoding='windows-1250') as csvfile:
@@ -93,12 +96,13 @@ class Count:
             data = list(document)
             provincesList = []
             for y in data:
-                if y["Terytorium"] != "Polska":
-                    provinces = y["Terytorium"]
-                    provincesList.append(provinces)
+                if y["Płeć "] == 'mężczyźni':
+                    if y["Terytorium"] != "Polska":
+                        provinces = y["Terytorium"]
+                        provincesList.append(provinces)
 
             dataSet = set(provincesList)
-            listdataSet = list(dataSet) #lista wszystkich województw
+            listdataSet = list(dataSet)  # lista wszystkich województw
 
             for i in listdataSet:
                 tempList = {}
@@ -116,16 +120,13 @@ class Count:
                                     attendedInt = float(x["Liczba osób"])
                                     attended += attendedInt
 
-
-                    result = round((passed/attended) * 100)
+                    result = round((passed / attended) * 100)
                     tempList[y] = result
 
                 print(i)
-                for z in range(2010,2018):
-                    if tempList[z] > tempList[z+1]:
+                for z in range(2010, 2018):
+                    if tempList[z] > tempList[z + 1]:
                         print(z,"-", tempList[z],"%", ">", (z + 1), "=", tempList[z + 1],"%")
-
-
 
 
     def compareProvince(self, province1, province2):
@@ -139,20 +140,21 @@ class Count:
                 passed2 = 0
                 for x in data:
                     if x["Rok"] == str(y):
-                        if x["Terytorium"] == str(province1):
-                            if x["Przystąpiło/zdało "] == "przystąpiło":
-                                accededIntAll = int(x["Liczba osób"])
-                                accededAll += accededIntAll
-                            if x["Przystąpiło/zdało "] == "zdało":
-                                passedInt = int(x["Liczba osób"])
-                                passed += passedInt
-                        if x["Terytorium"] == str(province2):
-                            if x["Przystąpiło/zdało "] == "przystąpiło":
-                                accededIntAll2 = int(x["Liczba osób"])
-                                accededAll2 += accededIntAll2
-                            if x["Przystąpiło/zdało "] == "zdało":
-                                passedInt2 = int(x["Liczba osób"])
-                                passed2 += passedInt2
+                        if x["Płeć "] == "mężczyźni":
+                            if x["Terytorium"] == str(province1):
+                                if x["Przystąpiło/zdało "] == "przystąpiło":
+                                    accededIntAll = int(x["Liczba osób"])
+                                    accededAll += accededIntAll
+                                if x["Przystąpiło/zdało "] == "zdało":
+                                    passedInt = int(x["Liczba osób"])
+                                    passed += passedInt
+                            if x["Terytorium"] == str(province2):
+                                if x["Przystąpiło/zdało "] == "przystąpiło":
+                                    accededIntAll2 = int(x["Liczba osób"])
+                                    accededAll2 += accededIntAll2
+                                if x["Przystąpiło/zdało "] == "zdało":
+                                    passedInt2 = int(x["Liczba osób"])
+                                    passed2 += passedInt2
                 if accededAll != 0 and accededAll2 != 0:
                     result = round((passed/accededAll) * 100)
                     result2 = round((passed2 / accededAll2) * 100)
@@ -162,13 +164,5 @@ class Count:
                         print(y,province2)
                     else:
                         print(y,"Oba mają taki sam wynik",province1, result,"%", province2, result2 ,"%" )
-
-
-
-
-
-
-
-
 
 
