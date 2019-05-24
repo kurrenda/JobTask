@@ -1,4 +1,5 @@
-import Data,DataMan,DataWoman, ApiReader, UploadFile, DownloadFile
+from functions import Data,DataMan,DataWoman,UploadFile,ApiReader,DownloadFile
+
 from argparse import ArgumentParser
 
 

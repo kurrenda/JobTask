@@ -1,5 +1,6 @@
 import sqlite3, csv
 
+
 def upload():
     con = sqlite3.connect("my.db")
     cur = con.cursor()
