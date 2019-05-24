@@ -3,7 +3,7 @@ Instrukcja:
 1. Folder wypakowywujemy, następnie włączamy terminal i przechodzimy do naszego folderu >cd [ścieżka do pliku]
     a) Możliwość pobrania pliku z danymi z serwera wpisując komendę:
 
-        pythom Main.py api
+        python Main.py api
 
 2. Komendy:
 
