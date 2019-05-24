@@ -8,13 +8,32 @@ python Main.py -mode [zad1/zad2/zad3/zad4/zad5]    <---- wybór zadania
 
 ZAD1
 
-python Main.py -mode zad1 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery}
+python Main.py -mode zad1 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery]
 
-np: >python Main.py -mode Zad1 -year 2010 -prov Pomorskie
+np: >python Main.py -mode zad1 -year 2010 -prov Pomorskie
 
 
 ZAD2
 
-python Main.py -mode zad1 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery}
+python Main.py -mode zad3 -year [rok od 2010 do 2018] -prov [województwo z wielkiej litery}
 
-np: >python Main.py -mode Zad1 -year 2010 -prov Pomorskie
+np: >python Main.py -mode zad2 -year 2010 -prov Pomorskie
+
+ZAD3
+
+python Main.py -mode zad3 -year [rok od 2010 do 2018]
+
+np: >python Main.py -mode zad3 -year 2015
+
+
+ZAD4
+
+python Main.py -mode zad4
+
+ZAD5
+
+python Main.py -mode zad5 -prov [województwo z wielkiej litery] -prov2 [wojewodztwo z wielkiej litery]
+
+Filtry:
+
+-gender [męzczyzni/kobiety/default]
