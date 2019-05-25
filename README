@@ -15,10 +15,14 @@ Instrukcja:
 
         python Main.py downloadfile
 
+    Filtry:
+
+        -gender [męzczyzni/kobiety/default]
+
+    Wybór zadania:
 
 
-
-    python Main.py -mode [zad1/zad2/zad3/zad4/zad5]    <---- wybór zadania
+        python Main.py NAZWAPLIKU -mode [zad1/zad2/zad3/zad4/zad5]
 
 
 ZAD 1) obliczenie średniej liczby osób, które przystąpiły do egzaminu dla danego województwa na przestrzeni lat, do podanego roku włącznie
@@ -67,7 +71,3 @@ ZAD 5) porównanie dwóch województw - dla podanych dwóch województw wypisani
         np: python Main.py dane.csv -mode zad5 -prov Pomorskie -prov2 Mazowieckie
 
 
-
-Filtry:
-
--gender [męzczyzni/kobiety/default]

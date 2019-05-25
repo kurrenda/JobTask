@@ -24,6 +24,7 @@ class CountMan:
                 if counter != 0:
                     result = count / counter
                     print(year, "-", round(result))
+                    return result
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
 
@@ -71,6 +72,7 @@ class CountMan:
                 if (countAll != 0):
                     result = float((countPassed / countAll) * 100.0)
                     print(year,"-",round(result))
+                    return result
             return 0
 
     def bestPass(self, year):
@@ -86,6 +88,7 @@ class CountMan:
                             provinceResult = province
                             result = temp
                 print(provinceResult,result)
+                return round(result)
 
 
 
@@ -96,10 +99,9 @@ class CountMan:
             data = list(document)
             provincesList = []
             for y in data:
-                if y["Płeć "] == 'mężczyźni':
-                    if y["Terytorium"] != "Polska":
-                        provinces = y["Terytorium"]
-                        provincesList.append(provinces)
+                if y["Terytorium"] != "Polska":
+                    provinces = y["Terytorium"]
+                    provincesList.append(provinces)
 
             dataSet = set(provincesList)
             listdataSet = list(dataSet)  # lista wszystkich województw
@@ -111,14 +113,15 @@ class CountMan:
                     attended = 0
                     for x in data:
                         if x["Rok"] == str(y):
-                            if x["Terytorium"] == str(i):
-                                if x["Przystąpiło/zdało "] == "zdało":
-                                    passedInt = float(x["Liczba osób"])
-                                    passed += passedInt
+                            if x["Płeć "] == 'mężczyźni':
+                                if x["Terytorium"] == str(i):
+                                    if x["Przystąpiło/zdało "] == "zdało":
+                                        passedInt = float(x["Liczba osób"])
+                                        passed += passedInt
 
-                                if x["Przystąpiło/zdało "] == "przystąpiło":
-                                    attendedInt = float(x["Liczba osób"])
-                                    attended += attendedInt
+                                    if x["Przystąpiło/zdało "] == "przystąpiło":
+                                        attendedInt = float(x["Liczba osób"])
+                                        attended += attendedInt
 
                     result = round((passed / attended) * 100)
                     tempList[y] = result

@@ -24,6 +24,7 @@ class Count:
                 if counter != 0:
                     result = count / counter
                     print(year, "-", round(result))
+                    return round(result)
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
 
@@ -69,7 +70,7 @@ class Count:
 
                 if (countAll != 0):
                     result = float((countPassed / countAll) * 100.0)
-                    print(year,"-",round(result))
+                    print(year,"-",round(result),"%")
             else:
                 print("Syntax Error")
 
@@ -87,6 +88,7 @@ class Count:
                         provinceResult = province
                         result = temp
                 print(provinceResult,result)
+                return(result)
 
     def bestProvince(self):
         with open(self.filename, 'r', encoding='windows-1250') as csvfile:
@@ -163,9 +165,6 @@ class Count:
                         print(y,province2)
                     else:
                         print(y,"Oba mają taki sam wynik",province1, result,"%", province2, result2 ,"%" )
-
-
-
 
 
 
