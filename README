@@ -71,3 +71,6 @@ ZAD 5) porównanie dwóch województw - dla podanych dwóch województw wypisani
         np: python Main.py dane.csv -mode zad5 -prov Pomorskie -prov2 Mazowieckie
 
 
+Osobiście uważam, że powyższy kod można byłoby zdecydowanie uprościć korzystając z możliwości biblioteki Pandas, np korzystając z polecenia GroupBy, który
+pozwalałby za pomocą samych funkcji obliczyć maksymalne, minimalne wartości, zsumować je, obliczyć medianę. Spowodowałoby to, że kod byłby bardziej czytelniejszy
+dla użytkownika i zdecydowanie krótszy.
