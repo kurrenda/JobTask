@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import csv
 
 class CountWoman:
@@ -23,7 +26,7 @@ class CountWoman:
                                     count += peopleInt
                 if counter != 0:
                     result = count / counter
-                    print(year, "-", round(result))
+                    print(year, "-", round(result), "-Kobiety")
                     return result
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
@@ -71,7 +74,7 @@ class CountWoman:
 
                 if (countAll != 0):
                     result = float((countPassed / countAll) * 100.0)
-                    print(year,"-",round(result))
+                    print(year,"-",round(result), "%", "-Kobiety")
                     return result
             return 0
 
@@ -128,7 +131,7 @@ class CountWoman:
                 print(i)
                 for z in range(2010, 2018):
                     if tempList[z] > tempList[z + 1]:
-                        print(z,"-", tempList[z],"%", ">", (z + 1), "=", tempList[z + 1],"%")
+                        print(z,"-", tempList[z],"%", ">", (z + 1), "=", tempList[z + 1],"%", "-Kobiety")
 
 
     def compareProvince(self, province1, province2):

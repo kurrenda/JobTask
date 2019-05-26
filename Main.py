@@ -1,4 +1,7 @@
-from functions import Data,DataMan,DataWoman,UploadFile,ApiReader,DownloadFile
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from functions import Data,DataMan,DataWoman,UploadFile,DownloadFile
 
 from argparse import ArgumentParser
 
@@ -21,6 +24,7 @@ def main():
     name = args.filename
 
     if args.filename == 'api':
+        from functions import ApiReader  # w przypadku braku biblioteki request, program się uruchomi
         ApiReader.api()
 
     if args.filename == 'uploadfile':
