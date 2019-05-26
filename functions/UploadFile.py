@@ -17,4 +17,4 @@ def upload():
     cur.executemany("INSERT INTO t ('Terytorium','Przystąpiło/zdało ','Płeć ','Rok','Liczba osób') VALUES (?, ?, ?, ?, ?);", to_db)
     con.commit()
     con.close()
-    return 1
+    print("Plik pomyślnie został umieszczony w bazie danych!")

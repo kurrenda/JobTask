@@ -89,7 +89,7 @@ class Count:
                     if temp > result:
                         provinceResult = province
                         result = temp
-                print(provinceResult,result)
+                print(provinceResult,result, "%")
                 return(result)
 
     def bestProvince(self):

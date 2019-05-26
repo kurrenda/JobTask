@@ -16,3 +16,5 @@ def api():
     response2 = requests.get(url2)
     with open('daneApi.csv', 'wb') as f:
         f.write(response2.content)
+
+    print("Pobranie pliku przebiegło pomyślnie!")

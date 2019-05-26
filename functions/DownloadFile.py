@@ -16,4 +16,4 @@ def download():
         csv_writer.writerow([i[0] for i in cursor.description]) # write headers
         csv_writer.writerows(cursor)
 
-    return 1
+    print("Plik pomyślnie został pobrany!")

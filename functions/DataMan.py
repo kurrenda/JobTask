@@ -26,7 +26,7 @@ class CountMan:
                                     count += peopleInt
                 if counter != 0:
                     result = count / counter
-                    print(year, "-", round(result), "-Mężczyźni")
+                    print(year, "-", round(result), "- Mężczyźni")
                     return result
             else:
                 print("Podałeś zły rok lub złą nazwę województwa(zakres 2010-2018)")
@@ -74,7 +74,7 @@ class CountMan:
 
                 if (countAll != 0):
                     result = float((countPassed / countAll) * 100.0)
-                    print(year,"-",round(result), "%", "-Mężczyźni")
+                    print(year,"-",round(result), "%", "- Mężczyźni")
                     return result
             return 0
 
@@ -90,7 +90,7 @@ class CountMan:
                         if temp > result:
                             provinceResult = province
                             result = temp
-                print(provinceResult,result, "-Mężczyźni")
+                print(provinceResult,result,"%", "- Mężczyźni")
                 return round(result)
 
 
@@ -129,7 +129,7 @@ class CountMan:
                     result = round((passed / attended) * 100)
                     tempList[y] = result
 
-                print(i, "-Mężczyźni")
+                print(i, "- Mężczyźni")
                 for z in range(2010, 2018):
                     if tempList[z] > tempList[z + 1]:
                         print(z,"-", tempList[z],"%", ">", (z + 1), "=", tempList[z + 1],"%")
